@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 // 加载中文语言包
 import 'dayjs/locale/zh-cn'
 
-// 加载
+// 加载 ES6 写法
 import relativeTime from 'dayjs/plugin/relativeTime'
 
 // 配置使用相对时间的插件

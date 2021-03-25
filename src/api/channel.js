@@ -9,12 +9,12 @@ export const getAllChannels = () => {
   })
 }
 // 添加用户频道
-export const addUserChannel = channels => {
+export const addUserChannel = channel => {
   return request({
     method: 'PATCH',
     url: '/app/v1_0/user/channels',
     data: {
-      channels
+      channels: [channel]
     }
   })
 }

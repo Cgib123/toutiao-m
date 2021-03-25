@@ -10,7 +10,7 @@ const request = axios.create({
 // Add a request interceptor
 request.interceptors.request.use(function (config) {
   // 请求发起会经过这里
-  // config配置对象
+  // config本次请求的配置对象
   const { user } = store.state
   if (user) {
     config.headers.Authorization = `Bearer ${user.token}`

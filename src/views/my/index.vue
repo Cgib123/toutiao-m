@@ -56,13 +56,7 @@
     <van-cell-group>
       <van-cell title="消息通知" is-link />
       <van-cell class="md9" title="小智同学" is-link />
-      <van-cell
-        v-if="user"
-        @click="onLLogout"
-        class="lgout-cell"
-        title="退出登录"
-        clickable
-      />
+      <van-cell v-if="user" @click="onLLogout" class="lgout-cell" title="退出登录" clickable />
     </van-cell-group>
     <!-- 消息通知 -->
   </div>
@@ -99,7 +93,7 @@ export default {
       // 退出提示
       // 在组件中用this.$dialog 来调用弹窗组件
       this.$dialog.confirm({
-        title: '确认退出码？'
+        title: '确认退出吗？'
       })
         .then(() => {
           // on confirm

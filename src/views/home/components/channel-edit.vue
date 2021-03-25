@@ -2,37 +2,24 @@
   <div class="channel-edit">
     <van-cell :border="false">
       <div slot="title" class="title-text">我的频道</div>
-      <van-button
-        class="edit-btn"
-        type="danger"
-        plain
-        round
-        size="mini"
-        @click="isEdit = !isEdit"
-        >{{ isEdit ? "完成" : "编辑" }}</van-button
-      >
+      <van-button class="edit-btn" type="danger" plain round size="mini"
+                  @click="isEdit = !isEdit">{{ isEdit ? "完成" : "编辑" }}
+      </van-button>
     </van-cell>
     <van-grid class="my-grid" :gutter="10">
-      <van-grid-item
-        class="grid-item"
-        v-for="(channel, index) in myChannels"
-        :key="index"
-        @click="onMyChannelClick(channel, index)"
-      >
+      <van-grid-item class="grid-item" :key="index"
+                     v-for="(channel, index) in myChannels"
+                     @click="onMyChannelClick(channel, index)">
         <!--   v-bind:class语法
       一个对象，对象中的key 表示要作用的css类名
       对象中的value要计算出布尔值
       true，则作用该类名
       false，不作用类名 -->
-        <van-icon
-          v-show="isEdit && !fiexdChannels.includes(channel.id)"
-          name="clear"
-          slot="icon"
-        >
-        </van-icon>
+        <!-- 不能是固定频道里的id -->
+        <van-icon v-show="isEdit && !fiexdChannels.includes(channel.id)"
+                  name="clear" slot="icon"></van-icon>
         <span class="text" :class="{ active: index === active }" slot="text">
-          {{ channel.name }}
-        </span>
+          {{ channel.name }}</span>
       </van-grid-item>
     </van-grid>
 
@@ -41,14 +28,10 @@
       <div slot="title" class="title-text">频道推荐</div>
     </van-cell>
     <van-grid class="recommend-grid" :gutter="10">
-      <van-grid-item
-        class="grid-item"
-        v-for="(channel, index) in recommendChannels"
-        :key="index"
-        icon="plus"
-        :text="channel.name"
-        @click="onAddChannel(channel)"
-      />
+      <van-grid-item class="grid-item"
+                     v-for="(channel, index) in recommendChannels" :key="index"
+                     icon="plus" :text="channel.name"
+                     @click="onAddChannel(channel)" />
     </van-grid>
     <!-- 频道推荐 -->
   </div>
@@ -81,7 +64,7 @@ export default {
     return {
       allChannels: [], // 所有的频道
       isEdit: false, // 我的频道关闭按钮
-      fiexdChannels: [0]
+      fiexdChannels: [0] // 固定频道，不允许被删除
     }
   },
   computed: {
@@ -135,10 +118,10 @@ export default {
       if (this.user) {
         try {
           // 登录状态  把数据请求接口放到线上
-          await addUserChannel([{
+          await addUserChannel({
             id: channel.id, // 频道ID
             seq: this.myChannels.length // 序号
-          }])
+          })
         } catch (err) {
           this.$toast('保存失败，请稍后重试 ')
         }
@@ -160,7 +143,7 @@ export default {
         // 编辑状态 删除频道 isEdit=true
         // 参数一：要删除的索引
         // 参数二：要删除的个数，不指定则删除到最后
-        if (index <= this.acindextive) {
+        if (index <= this.active) {
           // 让激活的索引-1
           this.$emit('update-active', this.active - 1, true)
         }

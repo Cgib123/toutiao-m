@@ -2,8 +2,9 @@
   <div class="home-container">
     <!-- 导航栏 -->
     <van-nav-bar class="page-nave-bar" fixed>
-      <van-button class="search-btn" slot="title" size="small" icon="search"
-                  round type="info">
+      <van-button class="search-btn" slot="title"
+                  size="small" icon="search" round
+                  type="info">
         搜索
       </van-button>
     </van-nav-bar>
@@ -11,14 +12,17 @@
 
     <!-- 频道列表  -->
     <!-- 通过 v-model 绑定当前激活标签对应的索引值，默认情况下启用第一个标签。 -->
-    <van-tabs class="channel-tabs" v-model="active" animated swipeable>
-      <van-tab :title="channel.name" v-for="channel in channels"
+    <van-tabs class="channel-tabs" v-model="active" animated
+              swipeable>
+      <van-tab :title="channel.name"
+               v-for="channel in channels"
                :key="channel.id">
         <!-- 文章列表 -->
         <article-list :channel="channel" />
         <!-- 文章列表 -->
       </van-tab>
-      <div slot="nav-right" class="placeholder"></div>
+      <div slot="nav-right" class="placeholder">
+      </div>
       <div slot="nav-right" class="hamburger-btn"
            @click="isChannelEditShow = true">
         <i class="toutiao toutiao-gengduo"></i>
@@ -27,7 +31,8 @@
     <!-- 频道列表 -->
     <!-- 频道编辑弹出层 -->
     <van-popup v-model="isChannelEditShow" closeable
-               close-icon-position="top-left" position="bottom"
+               close-icon-position="top-left"
+               position="bottom"
                :style="{ height: '100%' }">
       <channel-edit :my-channels="channels" :active="active"
                     @update-active="onUpdateActive">
@@ -55,7 +60,7 @@ export default {
     return {
       active: 0,
       channels: [], // 频道列表
-      isChannelEditShow: true // 控制编辑频道弹出层的显示状态
+      isChannelEditShow: false // 控制编辑频道弹出层的显示状态
     }
   },
   computed: {

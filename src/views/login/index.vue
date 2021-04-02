@@ -1,8 +1,9 @@
 <template>
   <div class="login-container">
     <!-- 导航栏 -->
-    <van-nav-bar class="page-nave-bar" title="登录">
-      <van-icon slot="left" name="cross" @click="$router.back()" />
+    <van-nav-bar class="page-nav-bar" title="登录">
+      <van-icon slot="left" name="cross"
+                @click="$router.back()" />
     </van-nav-bar>
     <!-- 导航栏 -->
 
@@ -13,20 +14,33 @@
       验证失败，不会触发submit事件
      -->
     <van-form ref="loginform" @submit="onSubmit">
-      <van-field v-model="user.mobile" name="mobile" placeholder="请输入手机号" :rules="userFormRules.mobile" type="number" maxlength="11">
+      <van-field v-model="user.mobile" name="mobile"
+                 placeholder="请输入手机号"
+                 :rules="userFormRules.mobile" type="number"
+                 maxlength="11">
         <i slot="left-icon" class="toutiao touti
         ao-shouji"></i>
       </van-field>
-      <van-field v-model="user.code" name="code" placeholder="请输入验证码" :rules="userFormRules.code" type="number" maxlength="6">
+      <van-field v-model="user.code" name="code"
+                 placeholder="请输入验证码"
+                 :rules="userFormRules.code" type="number"
+                 maxlength="6">
         <template #button>
           <!-- time 倒计时的时长 -->
-          <van-count-down v-if="isCountDownShow" :time="1000 * 60" format="ss s" @finish="isCountDownShow = false" />
-          <van-button v-else class="send-sms-btn" native-type="button" round size="small" type="default" @click="onSendSms">发送验证码</van-button>
+          <van-count-down v-if="isCountDownShow"
+                          :time="1000 * 60" format="ss s"
+                          @finish="isCountDownShow = false" />
+          <van-button v-else class="send-sms-btn"
+                      native-type="button" round
+                      size="small" type="default"
+                      @click="onSendSms">发送验证码</van-button>
         </template>
-        <i slot="left-icon" class="toutiao toutiao-yanzhengma"></i>
+        <i slot="left-icon"
+           class="toutiao toutiao-yanzhengma"></i>
       </van-field>
       <div class="login-btn-wrap">
-        <van-button class="login-btn" block type="info" native-type="submit">登陆</van-button>
+        <van-button class="login-btn" block type="info"
+                    native-type="submit">登陆</van-button>
       </div>
     </van-form>
     <!-- 登陆表单 -->

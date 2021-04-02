@@ -13,7 +13,7 @@
     <van-cell :title="item" :key="index"
               v-for="(item,index) in searchHistories"
               @click="onSearchItemClick(item,index)">
-      <van-icon v-if="isDeleteShow" name="close" />
+      <van-icon v-show="isDeleteShow" name="close" />
     </van-cell>
   </div>
 </template>
